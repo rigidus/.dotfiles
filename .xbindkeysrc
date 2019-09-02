@@ -1,0 +1,129 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 0.1.3
+#
+# If you edit this, do not forget to uncomment any lines that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h 
+# The XK_ is not needed. 
+#
+# List of modifier (on my keyboard): 
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+#
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+#
+# This file is created by xbindkey_config 
+# The structure is : 
+# # Remark 
+# "command" 
+# m:xxx + c:xxx 
+# Shift+... 
+
+
+
+
+#keystate_numlock = enable
+#keystate_scrolllock = enable
+#keystate_capslock = enable
+
+
+
+#emacs
+"gnome-terminal -x bash -i -c "emacs -nw""
+    m:0x5 + c:26
+    Control+Shift + e 
+
+#m1
+"xvkbd -no-jump-pointer -xsendevent -text '\m1'"
+    m:0x0 + c:74
+    F8 
+
+#m2
+"xvkbd -no-jump-pointer -xsendevent -text '\m2'"
+    m:0x0 + c:76
+    F10 
+
+#m3
+"xvkbd -no-jump-pointer -xsendevent -text '\m3'"
+    m:0x0 + c:75
+    F9 
+
+#mouse-pos-0
+"xdotool mousemove 10 10"
+    m:0x48 + c:10
+    Alt+Mod4 + 1 
+
+#mouse-pos-1
+"xdotool mousemove 985 500"
+    m:0x48 + c:19
+    Alt+Mod4 + 0 
+
+#mouse-pos-2
+"xdotool mousemove 525 315"
+    m:0x48 + c:11
+    Alt+Mod4 + 2 
+
+#mouse-pos
+"xdotool mousemove 1440 315"
+    m:0x48 + c:12
+    Alt+Mod4 + 3 
+
+#mouse-pos
+"xdotool mousemove 525 810"
+    m:0x48 + c:13
+    Alt+Mod4 + 4 
+
+#mouse-pos
+"xdotool mousemove 1440 810"
+    m:0x48 + c:14
+    Alt+Mod4 + 5 
+
+#mouse-pos-down
+"xdotool mousemove_relative --sync 0 50"
+    m:0x48 + c:17
+    Alt+Mod4 + 8 
+
+#mouse-pos-down-min
+"xdotool mousemove_relative --sync 0 10"
+    m:0x4c + c:17
+    Control+Alt+Mod4 + 8 
+
+#mouse-pos-right-max
+"xdotool mousemove_relative --sync 50 0"
+    m:0x48 + c:18
+    Alt+Mod4 + 9 
+
+#mouse-pos-right-min
+"xdotool mousemove_relative --sync 10 0"
+    m:0x4c + c:18
+    Control+Alt+Mod4 + 9 
+
+#mouse-pos-up-max
+"xdotool mousemove_relative --sync 0 -50"
+    m:0x48 + c:16
+    Alt+Mod4 + 7 
+
+#mouse-pos-up-min
+"xdotool mousemove_relative --sync 0 -10"
+    m:0x4c + c:16
+    Control+Alt+Mod4 + 7 
+
+#mouse-pos-left-max
+"xdotool mousemove_relative --sync -- -50 0"
+    m:0x48 + c:15
+    Alt+Mod4 + 6 
+
+#mouse-pos-left-min
+"xdotool mousemove_relative --sync -- -10 0"
+    m:0x4c + c:15
+    Control+Alt+Mod4 + 6 
+
+#
+# End of xbindkeys configuration
