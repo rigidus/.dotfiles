@@ -1,0 +1,260 @@
+#+STARTUP: showall indent hidestars
+
+* sudo
+
+#+BEGIN_SRC sh
+  apt-get install sudo
+#+END_SRC
+
+чтобы при использовании команды sudo спрашивало
+пароль не пользователя, а root-а, нужно в sudoers раскомментировать
+следующую строку:
+
+#+BEGIN_SRC
+  default targetpw
+#+END_SRC
+
+* mc
+
+#+BEGIN_SRC sh
+  sudo apt-get install mc
+#+END_SRC
+
+* sshfs
+
+#+BEGIN_SRC sh
+  sudo apt-get install sshfs
+#+END_SRC
+
+* git
+
+#+BEGIN_SRC sh
+ sudo apt-get install git-core
+#+END_SRC
+
+* gimp
+
+#+BEGIN_SRC sh
+ sudo apt-get install gimp
+#+END_SRC
+
+* tig
+
+#+BEGIN_SRC sh
+  sudo apt-get install tig
+#+END_SRC
+
+* wireshark
+
+#+BEGIN_SRC sh
+ apt-get install wireshark
+#+END_SRC
+
+* lamp
+
+#+BEGIN_SRC sh
+  sudo tasksel install lamp-server
+  port 8080
+  error: Could not reliably determine the server’s fully qualified...
+  to /etc/apache2/httpd.conf : "ServerName localhost"
+#+END_SRC
+
+* openssh
+
+#+BEGIN_SRC sh
+  apt-get install openssh-server
+#+END_SRC
+* nginx
+
+nginx умеет fastcgi: http://nginx.localdomain.pl/wiki/FcgiWrap
+
+* cgit
+
+http://habrahabr.ru/blogs/linux/86753/
+Файлы логов виртуальных хостов должны существовать!
+Чтобы веб-сервер имел доступ к папке где лежит .htaccess надо
+поставить права ...-xr-x на всю цепочку папок
+a2enmod rewrite
+http://linuxdoc.pp.ru/content/cgit-%D0%B8-apache
+
+* gitosis
+
+http://meandubuntu.ru/2009/12/%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-git-%D0%B8-gitosis-%D0%B2-ubuntu/
+http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way
+При добавлении нового репозитория проверить совпадение имен в ключах
+пользователей и имен в gitosis.conf. Не забыть пушнуть gitosis.conf
+Пушить новый репозиторий при создании с помощью git push origin
+master:refs/heads/master
+
+* xbindkeys-config
+
+#+BEGIN_SRC
+  sudo apt install xbindkeys-config
+#+END_SRC
+
+* seltr
+
+https://habr.com/en/post/137215/
+
+Очень простой интерфейс для отправки уведомлений из консоли предоставляет утилита
+notify-send, которую можно найти в пакете libnotify-bin.
+
+Пример:
+
+#+BEGIN_SRC sh
+  notify-send 'title' 'message'
+#+END_SRC
+
+Для получения текущего выделения в X Window System используется утилита xsel. Её надо
+поставить:
+
+#+BEGIN_SRC sh
+  sudo apt install xsel
+#+END_SRC
+
+Теперь, чтобы получить текущее выделение в поток ввода из командной строки можно ввести:
+
+#+BEGIN_SRC sh
+  xsel -o
+#+END_SRC
+
+Создаём файл с именем /usr/bin/seltr и копируем в него следующие 2 строки:
+
+#+BEGIN_SRC sh
+  #!/usr/bin/env bash
+  notify-send -u critical "$(xsel -o)" "$(wget -U "Mozilla/5.0" -qO -
+  #"http://translate.google.com/translate_a/t?client=t&text=$(xsel -o | sed
+  #"s/[\"'<>]//g")&sl=auto&tl=ru" | sed 's/\[\[\[\"//' | cut -d \" -f 1)"
+#+END_SRC
+
+#+BEGIN_SRC sh
+  chmod 777 /usr/bin/seltr
+  sudo apt-get install xbindkeys
+
+  xbindkeys --defaults > ~/.xbindkeysrc
+#+END_SRC
+
+Добавляем в ~/.xbindkeys
+
+#+BEGIN_SRC sh
+  "seltr"
+  control+shift + m
+#+END_SRC
+
+* TODO dia - для работы со схемами в линукс
+* TODO vnc
+* TODO qfsm
+скачан но не поставлен
+* TODO conky
+* rar/unrar
+
+#+BEGIN_SRC sh
+  apt-get install rar unrar
+#+END_SRC
+
+* opera
+
+opera.com - tar.gz - sh install
+* chrome
+
+google.com - package install
+
+* skype
+
+#+BEGIN_SRC sh
+  wget http://www.skype.com/go/getskype-linux-beta-ubuntu-32
+  sudo apt-get install libqt4-dbus libqt4-network libqt4-xml libasound2
+#+END_SRC
+
+* autoconf
+
+#+BEGIN_SRC sh
+  sudo apt-get install autoconf
+#+END_SRC
+
+* texinfo
+
+#+BEGIN_SRC sh
+  sudo apt-get install texinfo
+#+END_SRC
+
+* conkeror
+
+#+BEGIN_SRC sh
+  sudo apt-get install conkeror
+#+END_SRC
+
+* YOTA
+
+http://forum.ubuntu.ru/index.php?topic=94235.0
+
+#+BEGIN_SRC sh
+  sudo apt-get install madwimax
+#+END_SRC
+
+затем  создать файл ~/etc/udev/rules.d/60-madwimax.rules~
+с сoдержимым:
+
+#+BEGIN_SRC sh
+  # udev rules file for madwimax supported devices
+  SUBSYSTEM!="usb|usb_device", GOTO="madwimax_rules_end"
+  ACTION!="add", GOTO="madwimax_rules_end"
+  ATTR{idVendor}=="04e8", ATTR{idProduct}=="6761", RUN+="//sbin/madwimax -qdof --exact-device=$attr{busnum}/$attr{devnum}"
+  ATTR{idVendor}=="04e9", ATTR{idProduct}=="6761", RUN+="//sbin/madwimax -qdof --exact-device=$attr{busnum}/$attr{devnum}"
+  LABEL="madwimax_rules_end"
+#+END_SRC
+
+* FIREFOX
+** Чтобы не переключался в автономный режим
+в адресной строке firefox
+about:config -> toolkit.networkmanager.disable -> в положение true
+** Flash
+Сам предложит
+** Firemax
+** Firebug
+** Colorzilla
+** Readability
+** Настройки
+Снять галку "Запоминать пароли для сайтов"
+* EMACS
+
+#+BEGIN_SRC sh
+  apt-get install libncurses5-dev
+#+END_SRC
+
+get emacs, configure --without-x, make, make install
+слить .emacs.d и jabber-accounts.el
+
+** emacs-jabber
+
+#+BEGIN_SRC sh
+  cd ~/.emacs.d
+  git clone
+  git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber
+  autoreconf -i
+  ./configure
+  make
+#+END_SRC
+
+** mailcrypt
+
+** dict
+
+#+BEGIN_SRC sh
+sudo apt-get install dict
+#+END_SRC
+
+* sbcl
+
+#+BEGIN_SRC sh
+sbcl.org download install
+chmod +x cache fasls
+#+END_SRC
+
+* slime
+
+слить quicklisp и .emacs.d
+
+* quicklisp
+
+copy quicklisp folger from home mashine
