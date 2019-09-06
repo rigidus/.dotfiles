@@ -92,6 +92,18 @@ master:refs/heads/master
   sudo apt install xbindkeys-config
 #+END_SRC
 
+* xdotool
+
+xte
+xvkbd
+xprop
+
+https://habr.com/ru/post/266375/
+
+#+BEGIN_SRC
+  sudo apt install xdotool
+#+END_SRC
+
 * seltr
 
 https://habr.com/en/post/137215/
@@ -122,9 +134,8 @@ notify-send, которую можно найти в пакете libnotify-bin.
 
 #+BEGIN_SRC sh
   #!/usr/bin/env bash
-  notify-send -u critical "$(xsel -o)" "$(wget -U "Mozilla/5.0" -qO -
-  #"http://translate.google.com/translate_a/t?client=t&text=$(xsel -o | sed
-  #"s/[\"'<>]//g")&sl=auto&tl=ru" | sed 's/\[\[\[\"//' | cut -d \" -f 1)"
+
+  notify-send -u critical --icon=info "$(xsel -o)" "$(wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ru&dt=t&q=$(xsel -o | sed "s/[\"'<>]//g")" | sed "s/,,,0]],,.*//g" | awk -F'"' '{print $2, $6}')"
 #+END_SRC
 
 #+BEGIN_SRC sh
@@ -152,6 +163,18 @@ notify-send, которую можно найти в пакете libnotify-bin.
   apt-get install rar unrar
 #+END_SRC
 
+* llvm cmake
+
+#+BEGIN_SRC
+  cd ~/build
+  git clone https://github.com/llvm/llvm-project.git
+  cd llvm-project
+  mkdir build
+  cd builds
+  cmake -DLLVM_ENABLE_PROJECTS=clang -G "Unix Makefiles" ../llvm
+  make
+  make install
+#+END_SRC
 * opera
 
 opera.com - tar.gz - sh install

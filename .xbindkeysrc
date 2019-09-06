@@ -125,5 +125,10 @@
     m:0x4c + c:15
     Control+Alt+Mod4 + 6 
 
+#seltr
+"seltr"
+    m:0x5 + c:58
+    Control+Shift + m 
+
 #
 # End of xbindkeys configuration
