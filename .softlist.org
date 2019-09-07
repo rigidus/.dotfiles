@@ -175,6 +175,13 @@ notify-send, которую можно найти в пакете libnotify-bin.
   make
   make install
 #+END_SRC
+
+* tcl
+
+#+BEGIN_SRC
+  sudo apt-get install tcl8.5 tk8.5 tcllib libsqlite3-tcl libtk-img
+#+END_SRC
+
 * opera
 
 opera.com - tar.gz - sh install

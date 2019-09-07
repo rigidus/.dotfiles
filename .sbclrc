@@ -6,6 +6,7 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
+(push #p"/home/rigidus/repo/png-read/" asdf:*central-registry*)
 (push #p"/home/rigidus/repo/rigidus.ru/" asdf:*central-registry*)
 (push #p"/home/rigidus/repo/frost/" asdf:*central-registry*)
 (push #p"/home/rigidus/repo/elray/" asdf:*central-registry*)
