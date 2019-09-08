@@ -29,19 +29,18 @@
 * git
 
 #+BEGIN_SRC sh
- sudo apt-get install git-core
+  sudo apt-get install git-core
+#+END_SRC
+* tig
+
+#+BEGIN_SRC sh
+  sudo apt-get install tig
 #+END_SRC
 
 * gimp
 
 #+BEGIN_SRC sh
  sudo apt-get install gimp
-#+END_SRC
-
-* tig
-
-#+BEGIN_SRC sh
-  sudo apt-get install tig
 #+END_SRC
 
 * wireshark
