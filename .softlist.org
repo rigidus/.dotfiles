@@ -43,6 +43,15 @@
  sudo apt-get install gimp
 #+END_SRC
 
+* yEd
+
+#+BEGIN_SRC sh
+  cd build
+  wget https://www.yworks.com/resources/yed/demo/yEd-3.19_with-JRE8_64-bit_setup.sh
+  chmod +x ./yEd-3.19_with-JRE11_64-bit_setup.sh
+  sudo sh ./yEd-3.19_with-JRE11_64-bit_setup.sh
+#+END_SRC
+
 * wireshark
 
 #+BEGIN_SRC sh
