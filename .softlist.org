@@ -278,8 +278,56 @@ get emacs, configure --without-x, make, make install
 
 ** dict
 
+https://ladycat.wordpress.com/2013/03/13/dict_n_dictem_n_emacs/
+
 #+BEGIN_SRC sh
-sudo apt-get install dict
+  aptitude install dict dictd dictem dict-freedict-eng-rus
+#+END_SRC
+
+Скачиваем словаль mueller отсюда:
+https://sourceforge.net/projects/mueller-dict/
+
+Распаковыаем, потом:
+
+#+BEGIN_SRC sh
+  ./configure
+  make
+  sudo make install
+#+END_SRC
+
+Идем в =/etc/dictd.conf= и добавляем в него:
+
+#+BEGIN_SRC conf
+  database mueller-abbrev {
+  data  /usr/local/share/dict/mueller-abbrev.dict.dz
+  index /usr/local/share/dict/mueller-abbrev.index
+  }
+  database mueller-base {
+  data  /usr/local/share/dict/mueller-base.dict.dz
+  index /usr/local/share/dict/mueller-base.index
+  }
+  database mueller-dict {
+  data  /usr/local/share/dict/mueller-dict.dict.dz
+  index /usr/local/share/dict/mueller-dict.index
+  }
+  database mueller-geo {
+  data  /usr/local/share/dict/mueller-geo.dict.dz
+  index /usr/local/share/dict/mueller-geo.index
+  }
+  database mueller-names {
+  data  /usr/local/share/dict/mueller-names.dict.dz
+  index /usr/local/share/dict/mueller-names.index
+  }
+#+END_SRC
+
+Посылаем SIGHUP демону =dictd=, чтобы он перечитал конфигурацию
+
+#+BEGIN_SRC sh
+  ps -aux | grep dictd
+  dictd     2950    0:00 dictd 1.12.1: 1/12
+  root      4198    0:00 grep --color=auto dictd
+
+  kill -s SIGHUP 2950
 #+END_SRC
 
 * sbcl
