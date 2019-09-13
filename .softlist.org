@@ -281,7 +281,7 @@ get emacs, configure --without-x, make, make install
 https://ladycat.wordpress.com/2013/03/13/dict_n_dictem_n_emacs/
 
 #+BEGIN_SRC sh
-  aptitude install dict dictd dictem dict-freedict-eng-rus
+  aptitude install dict dictd dictem
 #+END_SRC
 
 Скачиваем словаль mueller отсюда:
@@ -328,6 +328,33 @@ https://sourceforge.net/projects/mueller-dict/
   root      4198    0:00 grep --color=auto dictd
 
   kill -s SIGHUP 2950
+#+END_SRC
+
+Если вдруг захочется использовать нелокальный словарь, то в файле
+=/etc/dictd/dict.conf= (не путать с =dictd.conf= можно раскомментировать:
+
+#+BEGIN_SRC conf
+  server localhost
+  #server dict.org
+  #server dict0.us.dict.org
+  #server alt0.dict.org
+#+END_SRC
+
+список в файле =/var/lib/dictd/db.list= создается автоматически c помощью
+DICTDCONFIG(8), поэтому его редактировать не нужно.
+
+В файле =/etc/dictd/dictd.order= настраиваем порядок просмотра локальным сервером dictd
+баз данных англо-русских словарей
+
+#+BEGIN_SRC conf
+  # This file defines the order in which dictdconfig lists dictionaries
+  # in /var/lib/dictd/db.list.  The entry "/usr/share/dictd/" brings in
+  # any dictionaries in that directory that aren't specifically listed
+  # in this file.  You should enter the names of the dictionaries you
+  # have installed, in the order you would prefer to have them searched.
+
+  mueller-base  mueller-dict  mueller-geo  mueller-names  mueller-abbrev
+  /usr/share/dictd/
 #+END_SRC
 
 * sbcl
