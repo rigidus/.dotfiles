@@ -357,6 +357,25 @@ DICTDCONFIG(8), поэтому его редактировать не нужно
   /usr/share/dictd/
 #+END_SRC
 
+
+** ditaa
+
+#+BEGIN_SRC sh
+  sudo apt install ditaa
+#+END_SRC
+
+** gnuplot
+
+#+BEGIN_SRC sh
+  sudo apt install ditaa
+#+END_SRC
+
+** plantuml
+
+#+BEGIN_SRC sh
+  sudo apt install plantuml
+#+END_SRC
+
 * sbcl
 
 #+BEGIN_SRC sh
