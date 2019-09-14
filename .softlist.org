@@ -371,3 +371,22 @@ chmod +x cache fasls
 * quicklisp
 
 copy quicklisp folger from home mashine
+
+* org-mode
+
+Устанавливаем из официального репозитория
+
+#+BEGIN_SRC sh
+  cd ~/src/
+  git clone https://code.orgmode.org/ewestbrook/org-mode.git
+  cd org-mode/
+  make autoloads
+  make
+#+END_SRC
+
+Добавляем в ~/.emacs.d/init.el если еще нет
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/src/org-mode/lisp")
+  (add-to-list 'load-path "~/src/org-mode/contrib/lisp" t)
+#+END_SRC
