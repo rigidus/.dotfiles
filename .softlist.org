@@ -372,8 +372,24 @@ DICTDCONFIG(8), поэтому его редактировать не нужно
 
 ** plantuml
 
+https://real-world-plantuml.com/
+
 #+BEGIN_SRC sh
   sudo apt install plantuml
+#+END_SRC
+
+
+
+** graphviz
+
+#+BEGIN_SRC sh
+  sudo apt install graphviz
+#+END_SRC
+
+** mpd
+
+#+BEGIN_SRC sh
+  sudo apt install mpd
 #+END_SRC
 
 * sbcl
