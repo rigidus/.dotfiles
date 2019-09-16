@@ -2,6 +2,7 @@
 # будет отображать график вашей текущей цветовой гаммы терминала. Это удобно для тестирования и еще много чего.
 # Original: http://frexx.de/xterm-256-notes/ [dead link 2013-11-21]
 #           http://frexx.de/xterm-256-notes/data/colortable16.sh [dead link 2013-11-21]
+# Copy: https://wiki.archlinux.org/index.php/X_resources_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)
 # Modified by Aaron Griffin
 # and further by Kazuo Teramoto
 FGNAMES=(' black ' '  red  ' ' green ' ' yellow' '  blue ' 'magenta' '  cyan ' ' white ')

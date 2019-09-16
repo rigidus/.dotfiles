@@ -171,6 +171,56 @@ notify-send, которую можно найти в пакете libnotify-bin.
   apt-get install rar unrar
 #+END_SRC
 
+* imagemagic
+
+#+BEGIN_SRC sh
+  sudo apt install libmagickcore-dev libmagickwand-dev
+#+END_SRC
+
+* emacs
+
+#+BEGIN_SRC sh
+  sudo apt install libmagickcore-dev libmagickwand-dev
+  wget http://mirror.tochlab.net/pub/gnu/emacs/emacs-26.3.tar.xz
+  untar
+  cd emacs-26.3
+  ./configure --with-imagemagick # это важно для телеги!
+  make
+  sudo make install
+#+END_SRC
+
+** telega el
+
+https://github.com/zevlg/telega.el
+
+#+BEGIN_SRC sh
+  sudo apt-get update
+  sudo apt-get upgrade
+  sudo apt-get install make git zlib1g-dev libssl-dev gperf php cmake g++
+  git clone https://github.com/tdlib/td.git
+  cd td
+  rm -rf build
+  mkdir build
+  cd build
+  export CXXFLAGS=""
+  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr/local ..
+  cmake --build . --target install
+  cd ..
+  cd ..
+  ls -l /usr/local
+#+END_SRC
+
+#+BEGIN_SRC sh
+  git clone https://github.com/zevlg/libtgvoip.git
+  cd libtgvoip
+  autoreconf --force --install && ./configure && make
+  sudo make install
+#+END_SRC
+
+#+BEGIN_SRC sh
+  sudo ldconfig
+#+END_SRC
+
 * llvm cmake
 
 #+BEGIN_SRC
