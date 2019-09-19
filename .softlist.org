@@ -114,7 +114,7 @@ https://habr.com/ru/post/266375/
 
 * seltr
 
-https://habr.com/en/post/137215/
+По мотивам: https://habr.com/en/post/137215/
 
 Очень простой интерфейс для отправки уведомлений из консоли предоставляет утилита
 notify-send, которую можно найти в пакете libnotify-bin.
@@ -138,13 +138,44 @@ notify-send, которую можно найти в пакете libnotify-bin.
   xsel -o
 #+END_SRC
 
-Создаём файл с именем /usr/bin/seltr и копируем в него следующие 2 строки:
+Создаём файл с именем /usr/bin/seltr и копируем в него следующие строки:
 
 #+BEGIN_SRC sh
   #!/usr/bin/env bash
-
-  notify-send -u critical --icon=info "$(xsel -o)" "$(wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ru&dt=t&q=$(xsel -o | sed "s/[\"'<>]//g")" | sed "s/,,,0]],,.*//g" | awk -F'"' '{print $2, $6}')"
+  TR="$(\
+         wget -U "Mozilla/5.0" -qO -\
+             "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ru&dt=t&q=\
+                $(\
+                    xsel -o | sed "s/[\"'<>]//g"\
+                )\
+             "\
+         | sed '/^\,\[\"en\"\]$/d;'\
+         | sed 's/\"\,\".*$//;'\
+         | sed 's/^\[\[\[\"/\,\[\"/;'\
+         | sed '/^\,\[\".*$/!d;'\
+         | sed 's/^\,\[\"//;'\
+     )"
+  notify-send -u critical --icon=info "$TR" "$TR"
 #+END_SRC
+
+Или, если вы предпочитате краткую форму:
+
+#+BEGIN_SRC sh
+  #!/usr/bin/env bash
+  TR="$(wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ru&dt=t&q=$(xsel -o | sed "s/[\"'<>]//g")" \
+   | sed '/^\,\[\"en\"\]$/d;s/\"\,\".*$//;s/^\[\[\[\"/\,\[\"/;/^\,\[\".*$/!d;s/^\,\[\"//;')"
+  notify-send -u critical --icon=info "$TR" "$TR"
+#+END_SRC
+
+
+Цепочки SED сделаны так, чтобы иметь возможность их выборочно отключать при
+отладке. Их назначение:
+- удаляет строки =["en"]=
+- обрезает каждую строку начиная с =","= и до ее конца
+- заменяет в начале каждой строки =[[["= на =["=
+- удаляет все строки кроме начинающихся с =,["=
+- удаляет =,["= в начале каждой из оставшихся строк
+
 
 #+BEGIN_SRC sh
   chmod 777 /usr/bin/seltr
