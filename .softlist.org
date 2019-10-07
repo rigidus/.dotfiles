@@ -220,6 +220,8 @@ notify-send, которую можно найти в пакете libnotify-bin.
   sudo make install
 #+END_SRC
 
+слить .emacs.d и jabber-accounts.el
+
 ** telega el
 
 https://github.com/zevlg/telega.el
@@ -251,98 +253,6 @@ https://github.com/zevlg/telega.el
 #+BEGIN_SRC sh
   sudo ldconfig
 #+END_SRC
-
-* llvm cmake
-
-#+BEGIN_SRC
-  cd ~/build
-  git clone https://github.com/llvm/llvm-project.git
-  cd llvm-project
-  mkdir build
-  cd builds
-  cmake -DLLVM_ENABLE_PROJECTS=clang -G "Unix Makefiles" ../llvm
-  make
-  make install
-#+END_SRC
-
-* tcl
-
-#+BEGIN_SRC
-  sudo apt-get install tcl8.5 tk8.5 tcllib libsqlite3-tcl libtk-img
-#+END_SRC
-
-* opera
-
-opera.com - tar.gz - sh install
-* chrome
-
-google.com - package install
-
-* skype
-
-#+BEGIN_SRC sh
-  wget http://www.skype.com/go/getskype-linux-beta-ubuntu-32
-  sudo apt-get install libqt4-dbus libqt4-network libqt4-xml libasound2
-#+END_SRC
-
-* autoconf
-
-#+BEGIN_SRC sh
-  sudo apt-get install autoconf
-#+END_SRC
-
-* texinfo
-
-#+BEGIN_SRC sh
-  sudo apt-get install texinfo
-#+END_SRC
-
-* conkeror
-
-#+BEGIN_SRC sh
-  sudo apt-get install conkeror
-#+END_SRC
-
-* YOTA
-
-http://forum.ubuntu.ru/index.php?topic=94235.0
-
-#+BEGIN_SRC sh
-  sudo apt-get install madwimax
-#+END_SRC
-
-затем  создать файл ~/etc/udev/rules.d/60-madwimax.rules~
-с сoдержимым:
-
-#+BEGIN_SRC sh
-  # udev rules file for madwimax supported devices
-  SUBSYSTEM!="usb|usb_device", GOTO="madwimax_rules_end"
-  ACTION!="add", GOTO="madwimax_rules_end"
-  ATTR{idVendor}=="04e8", ATTR{idProduct}=="6761", RUN+="//sbin/madwimax -qdof --exact-device=$attr{busnum}/$attr{devnum}"
-  ATTR{idVendor}=="04e9", ATTR{idProduct}=="6761", RUN+="//sbin/madwimax -qdof --exact-device=$attr{busnum}/$attr{devnum}"
-  LABEL="madwimax_rules_end"
-#+END_SRC
-
-* FIREFOX
-** Чтобы не переключался в автономный режим
-в адресной строке firefox
-about:config -> toolkit.networkmanager.disable -> в положение true
-** Flash
-Сам предложит
-** Firemax
-** Firebug
-** Colorzilla
-** Readability
-** Настройки
-Снять галку "Запоминать пароли для сайтов"
-* EMACS
-
-#+BEGIN_SRC sh
-  apt-get install libncurses5-dev
-#+END_SRC
-
-get emacs, configure --without-x, make, make install
-слить .emacs.d и jabber-accounts.el
 
 ** emacs-jabber
 
@@ -473,6 +383,92 @@ https://real-world-plantuml.com/
   sudo apt install mpd
 #+END_SRC
 
+
+
+* llvm cmake
+
+#+BEGIN_SRC
+  cd ~/build
+  git clone https://github.com/llvm/llvm-project.git
+  cd llvm-project
+  mkdir build
+  cd builds
+  cmake -DLLVM_ENABLE_PROJECTS=clang -G "Unix Makefiles" ../llvm
+  make
+  make install
+#+END_SRC
+
+* tcl
+
+#+BEGIN_SRC
+  sudo apt-get install tcl8.5 tk8.5 tcllib libsqlite3-tcl libtk-img
+#+END_SRC
+
+* opera
+
+opera.com - tar.gz - sh install
+* chrome
+
+google.com - package install
+
+* skype
+
+#+BEGIN_SRC sh
+  wget http://www.skype.com/go/getskype-linux-beta-ubuntu-32
+  sudo apt-get install libqt4-dbus libqt4-network libqt4-xml libasound2
+#+END_SRC
+
+* autoconf
+
+#+BEGIN_SRC sh
+  sudo apt-get install autoconf
+#+END_SRC
+
+* texinfo
+
+#+BEGIN_SRC sh
+  sudo apt-get install texinfo
+#+END_SRC
+
+* conkeror
+
+#+BEGIN_SRC sh
+  sudo apt-get install conkeror
+#+END_SRC
+
+* YOTA
+
+http://forum.ubuntu.ru/index.php?topic=94235.0
+
+#+BEGIN_SRC sh
+  sudo apt-get install madwimax
+#+END_SRC
+
+затем  создать файл ~/etc/udev/rules.d/60-madwimax.rules~
+с сoдержимым:
+
+#+BEGIN_SRC sh
+  # udev rules file for madwimax supported devices
+  SUBSYSTEM!="usb|usb_device", GOTO="madwimax_rules_end"
+  ACTION!="add", GOTO="madwimax_rules_end"
+  ATTR{idVendor}=="04e8", ATTR{idProduct}=="6761", RUN+="//sbin/madwimax -qdof --exact-device=$attr{busnum}/$attr{devnum}"
+  ATTR{idVendor}=="04e9", ATTR{idProduct}=="6761", RUN+="//sbin/madwimax -qdof --exact-device=$attr{busnum}/$attr{devnum}"
+  LABEL="madwimax_rules_end"
+#+END_SRC
+
+* FIREFOX
+** Чтобы не переключался в автономный режим
+в адресной строке firefox
+about:config -> toolkit.networkmanager.disable -> в положение true
+** Flash
+Сам предложит
+** Firemax
+** Firebug
+** Colorzilla
+** Readability
+** Настройки
+Снять галку "Запоминать пароли для сайтов"
+
 * sbcl
 
 #+BEGIN_SRC sh
@@ -505,4 +501,23 @@ copy quicklisp folger from home mashine
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "~/src/org-mode/lisp")
   (add-to-list 'load-path "~/src/org-mode/contrib/lisp" t)
+#+END_SRC
+
+* Lenovo Thinkpad Touchpad Problem
+
+solution from https://forums.lenovo.com/t5/Other-Linux-Discussions/Troubles-with-X1-Carbon-2018-X1C6-TouchPad-and-TrackPoint-under/td-p/4004815
+
+remove "i2c_i801" from /etc/modprobe.d/blacklist.conf
+
+in etc/default/grub:
+
+#+BEGIN_SRC conf
+  GRUB_CMDLINE_LINUX_DEFAULT="quiet splash psmouse.synaptics_intertouch=1"
+#+END_SRC
+
+after it:
+
+#+BEGIN_SRC sh
+  sudo grub-mkconfig =o /boot/grub/grub.cfg
+  sudo reboot now
 #+END_SRC
