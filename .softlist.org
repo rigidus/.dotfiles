@@ -383,8 +383,21 @@ https://real-world-plantuml.com/
   sudo apt install mpd
 #+END_SRC
 
+* Permdenied USB-port fix
 
+#+BEGIN_SRC sh
+  sudo usermod -a -G dialout $USER
+#+END_SRC
 
+* avrdisas
+
+Download: https://www.johannes-bauer.com/mcus/avrdisas/
+
+#+NAME:
+#+BEGIN_SRC sh
+  make
+  sudo make install
+#+END_SRC
 * llvm cmake
 
 #+BEGIN_SRC
