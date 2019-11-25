@@ -389,6 +389,8 @@ https://real-world-plantuml.com/
   sudo usermod -a -G dialout $USER
 #+END_SRC
 
+and relogin
+
 * avrdisas
 
 Download: https://www.johannes-bauer.com/mcus/avrdisas/
@@ -514,6 +516,19 @@ copy quicklisp folger from home mashine
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "~/src/org-mode/lisp")
   (add-to-list 'load-path "~/src/org-mode/contrib/lisp" t)
+#+END_SRC
+
+* latex
+
+#+BEGIN_SRC sh
+  sudo apt install texlive texlive-lang-cyrillic
+#+END_SRC
+
+Установить AUCTEX из melpa
+* curl
+
+#+BEGIN_SRC sh
+  sudo apt install curl
 #+END_SRC
 
 * Lenovo Thinkpad Touchpad Problem
