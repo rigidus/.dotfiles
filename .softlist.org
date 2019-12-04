@@ -546,6 +546,13 @@ in etc/default/grub:
 after it:
 
 #+BEGIN_SRC sh
-  sudo grub-mkconfig =o /boot/grub/grub.cfg
+  sudo grub-mkconfig -o /boot/grub/grub.cfg
   sudo reboot now
+#+END_SRC
+
+This solution works, but no gestures:
+
+#+BEGIN_SRC sh
+  sudo su
+  modprobe -r psmouse && modprobe psmouse proto=imps
 #+END_SRC
