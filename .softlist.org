@@ -544,6 +544,12 @@ copy quicklisp folger from home mashine
   sudo apt install expect
 #+END_SRC
 
+* Telegram
+
+#+BEGIN_SRC sh
+  sudo apt install telegram-desktop
+#+END_SRC
+
 * Lenovo Thinkpad Touchpad Problem
 
 solution from https://forums.lenovo.com/t5/Other-Linux-Discussions/Troubles-with-X1-Carbon-2018-X1C6-TouchPad-and-TrackPoint-under/td-p/4004815
