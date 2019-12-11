@@ -48,14 +48,14 @@
 #+BEGIN_SRC sh
   cd build
   wget https://www.yworks.com/resources/yed/demo/yEd-3.19_with-JRE8_64-bit_setup.sh
-  chmod +x ./yEd-3.19_with-JRE11_64-bit_setup.sh
-  sudo sh ./yEd-3.19_with-JRE11_64-bit_setup.sh
+  chmod +x ./yEd-3.19_with-JRE8_64-bit_setup.sh
+  sudo sh  ./yEd-3.19_with-JRE8_64-bit_setup.sh
 #+END_SRC
 
 * wireshark
 
 #+BEGIN_SRC sh
- apt-get install wireshark
+ sudo apt-get install wireshark
 #+END_SRC
 
 * lamp
@@ -70,7 +70,7 @@
 * openssh
 
 #+BEGIN_SRC sh
-  apt-get install openssh-server
+  sudo apt-get install openssh-server
 #+END_SRC
 * nginx
 
@@ -199,7 +199,7 @@ notify-send, которую можно найти в пакете libnotify-bin.
 * rar/unrar
 
 #+BEGIN_SRC sh
-  apt-get install rar unrar
+  sudo apt-get install rar unrar
 #+END_SRC
 
 * imagemagic
@@ -213,8 +213,13 @@ notify-send, которую можно найти в пакете libnotify-bin.
 #+BEGIN_SRC sh
   sudo apt install libmagickcore-dev libmagickwand-dev
   wget http://mirror.tochlab.net/pub/gnu/emacs/emacs-26.3.tar.xz
-  untar
+  tar xf emacs-26.3.tar.xz
   cd emacs-26.3
+  sudo apt-get install build-essential texinfo libx11-dev \
+  libxpm-dev libjpeg-dev libpng-dev libgif-dev libtiff-dev \
+  libgtk2.0-dev libncurses-dev libxpm-dev automake autoconf \
+  apt-cache search 'libgnutls.*-dev'
+  sudo apt install ibgnutls28-dev
   ./configure --with-imagemagick # это важно для телеги!
   make
   sudo make install
@@ -246,6 +251,7 @@ https://github.com/zevlg/telega.el
 #+BEGIN_SRC sh
   git clone https://github.com/zevlg/libtgvoip.git
   cd libtgvoip
+  sudo apt install libopus-dev libpulse-dev libasound-dev
   autoreconf --force --install && ./configure && make
   sudo make install
 #+END_SRC
@@ -258,21 +264,21 @@ https://github.com/zevlg/telega.el
 
 #+BEGIN_SRC sh
   cd ~/.emacs.d
-  git clone
-  git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber
+  git clone git://emacs-jabber.git.sourceforge.net/gitroot/emacs-jabber/emacs-jabber
+  cd emacs-jabber
   autoreconf -i
   ./configure
   make
 #+END_SRC
 
-** mailcrypt
+** TODO mailcrypt
 
 ** dict
 
 https://ladycat.wordpress.com/2013/03/13/dict_n_dictem_n_emacs/
 
 #+BEGIN_SRC sh
-  aptitude install dict dictd dictem
+  sudo apt install dict dictd dictem
 #+END_SRC
 
 Скачиваем словаль mueller отсюда:
@@ -358,7 +364,7 @@ DICTDCONFIG(8), поэтому его редактировать не нужно
 ** gnuplot
 
 #+BEGIN_SRC sh
-  sudo apt install ditaa
+  sudo apt install gnuplot
 #+END_SRC
 
 ** plantuml
@@ -368,8 +374,6 @@ https://real-world-plantuml.com/
 #+BEGIN_SRC sh
   sudo apt install plantuml
 #+END_SRC
-
-
 
 ** graphviz
 
@@ -400,6 +404,7 @@ Download: https://www.johannes-bauer.com/mcus/avrdisas/
   make
   sudo make install
 #+END_SRC
+
 * llvm cmake
 
 #+BEGIN_SRC
@@ -422,6 +427,7 @@ Download: https://www.johannes-bauer.com/mcus/avrdisas/
 * opera
 
 opera.com - tar.gz - sh install
+
 * chrome
 
 google.com - package install
@@ -483,11 +489,11 @@ about:config -> toolkit.networkmanager.disable -> в положение true
 ** Readability
 ** Настройки
 Снять галку "Запоминать пароли для сайтов"
-
 * sbcl
 
 #+BEGIN_SRC sh
 sbcl.org download install
+tar xjf ...
 chmod +x cache fasls
 #+END_SRC
 
@@ -525,6 +531,7 @@ copy quicklisp folger from home mashine
 #+END_SRC
 
 Установить AUCTEX из melpa
+
 * curl
 
 #+BEGIN_SRC sh
@@ -541,7 +548,9 @@ copy quicklisp folger from home mashine
 
 solution from https://forums.lenovo.com/t5/Other-Linux-Discussions/Troubles-with-X1-Carbon-2018-X1C6-TouchPad-and-TrackPoint-under/td-p/4004815
 
-remove "i2c_i801" from /etc/modprobe.d/blacklist.conf
+disable trackpoint and NFC in BIOS
+
+comment "i2c_i801" from /etc/modprobe.d/blacklist.conf
 
 in etc/default/grub:
 
@@ -556,9 +565,7 @@ after it:
   sudo reboot now
 #+END_SRC
 
-This solution works, but no gestures:
-
-#+BEGIN_SRC sh
+#+BEGIN_SRC
   sudo su
   modprobe -r psmouse && modprobe psmouse proto=imps
-#+END_SRC
+#+END
