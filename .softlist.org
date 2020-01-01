@@ -575,3 +575,48 @@ after it:
   sudo su
   modprobe -r psmouse && modprobe psmouse proto=imps
 #+END
+
+* Disable Ubuntu Dock
+
+Permanently hide the Ubuntu Dock from your desktop instead of removing
+it.
+
+If you prefer to permanently hide the Ubuntu Dock from showing up on your
+desktop instead of uninstalling it or using the vanilla Gnome session,
+you can easily do this using Dconf Editor. The drawback to this is that
+Ubuntu Dock will still use some system resources even though you're not
+using in on your desktop, but you'll also be able to easily revert this
+without installing or removing any packages.
+
+Ubuntu Dock is only hidden from your desktop though. When you go in
+overlay mode (Activities), you'll still see and be able to use Ubuntu
+Dock from there.
+
+To permanently hide Ubuntu Dock, use Dconf Editor to navigate to
+/org/gnome/shell/extensions/dash-to-dock and disable (set them to false)
+the following options: autohide, dock-fixed and intellihide.
+
+You can achieve this from the command line if you wish, buy running the
+commands below:
+
+
+#+BEGIN_SRC sh
+  gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
+
+  gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+
+  gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+#+END_SRC
+
+In case you change your mind and you want to undo this, you can either
+use Dconf Editor and re-enable (set them to true) autohide, dock-fixed
+and intellihide from /org/gnome/shell/extensions/dash-to-dock, or you can
+use these commands:
+
+#+BEGIN_SRC sh
+  gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+
+  gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
+
+  gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
+#+END_SRC
