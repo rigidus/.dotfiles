@@ -620,3 +620,14 @@ use these commands:
 
   gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
 #+END_SRC
+
+* Hide top bar
+
+install gnome-tweaks and run:
+
+#+BEGIN_SRC
+  sudo apt install gnome-shell-extension-autohidetopbar
+#+END_SRC
+
+Then log out and back in. The option to auto hide the top bar will be
+available from gnome-tweaks tool in the extensions section.
